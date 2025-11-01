@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn-login:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+        <label for="cpf">CPF</label>
+        <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+        
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+        
+        <button type="submit" class="btn-login">Entrar</button>
+    </form>
+</div>
+
+<script>
+    // Lista com todos os CPFs e senha padrão "Favela2024"
+    const usuarios = [
+        { cpf: '242.844.688-63', senha: 'Favela2024' },
+        { cpf: '220.595.738-40', senha: 'Favela2024' },
+        { cpf: '365.978.128-24', senha: 'Favela2024' },
+        { cpf: '337.674.668-05', senha: 'Favela2024' },
+        { cpf: '393.071.698-45', senha: 'Favela2024' },
+        { cpf: '496.055.694-34', senha: 'Favela2024' },
+        { cpf: '484.779.148-77', senha: 'Favela2024' },
+        { cpf: '465.452.278-66', senha: 'Favela2024' },
+        { cpf: '372.801.108-86', senha: 'Favela2024' },
+        { cpf: '491.509.028-06', senha: 'Favela2024' },
+        { cpf: '416.106.038-69', senha: 'Favela2024' },
+        { cpf: '079.174.198-27', senha: 'Favela2024' },
+        { cpf: '522.645.428-70', senha: 'Favela2024' },
+        { cpf: '412.986.878-02', senha: 'Favela2024' },
+        { cpf: '413.335.368-44', senha: 'Favela2024' },
+        { cpf: '343.999.238-14', senha: 'Favela2024' },
+        { cpf: '277.783.548-96', senha: 'Favela2024' },
+        { cpf: '877.999.793-72', senha: 'Favela2024' },
+        { cpf: '385.191.248-95', senha: 'Favela2024' },
+        { cpf: '425.539.538-10', senha: 'Favela2024' },
+        { cpf: '123.848.278-39', senha: 'Favela2024' },
+        { cpf: '013.915.683-62', senha: 'Favela2024' },
+        { cpf: '374.575.178-71', senha: 'Favela2024' },
+        { cpf: '479.970.518-05', senha: 'Favela2024' },
+        { cpf: '557.567.408-80', senha: 'Favela2024' },
+        { cpf: '372.304.428-00', senha: 'Favela2024' },
+        { cpf: '108.206.035-62', senha: 'Favela2024' },
+        { cpf: '079.173.808-66', senha: 'Favela2024' },
+        { cpf: '358.780.706-00', senha: 'Favela2024' },
+        { cpf: '412.450.978-22', senha: 'Favela2024' },
+        { cpf: '473.610.228-47', senha: 'Favela2024' },
+        { cpf: '309.044.608-19', senha: 'Favela2024' },
+        { cpf: '281.161.388-98', senha: 'Favela2024' },
+        { cpf: '213.332.498-45', senha: 'Favela2024' },
+        { cpf: '421.729.588-08', senha: 'Favela2024' },
+        { cpf: '449.395.068-43', senha: 'Favela2024' },
+        { cpf: '486.680.438-25', senha: 'Favela2024' },
+        { cpf: '269.523.488-08', senha: 'Favela2024' },
+        { cpf: '177.071.858-38', senha: 'Favela2024' },
+        { cpf: '409.978.618-86', senha: 'Favela2024' },
+        { cpf: '437.919.758-11', senha: 'Favela2024' },
+        { cpf: '426.464.448-85', senha: 'Favela2024' },
+        { cpf: '363.855.698-57', senha: 'Favela2024' },
+        { cpf: '037.332.303-45', senha: 'Favela2024' },
+        { cpf: '089.235.228-05', senha: 'Favela2024' },
+        { cpf: '304.840.098-26', senha: 'Favela2024' },
+        { cpf: '056.268.505-70', senha: 'Favela2024' },
+        { cpf: '408.575.748-25', senha: 'Favela2024' },
+        { cpf: '514.718.238-14', senha: 'Favela2024' },
+        { cpf: '231.425.598-41', senha: 'Favela2024' },
+        { cpf: '431.802.208-05', senha: 'Favela2024' },
+        { cpf: '438.698.568-90', senha: 'Favela2024' },
+        { cpf: '360.533.748-14', senha: 'Favela2024' }
+    ];
+
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        
+        const cpf = document.getElementById('cpf').value;
+        const senha = document.getElementById('senha').value;
+
+        // Verificar se o CPF existe na lista e se a senha é correta
+        const usuario = usuarios.find(u => u.cpf === cpf);
+
+        if (usuario && usuario.senha === senha) {
+            alert('Login bem-sucedido!');
+        } else {
+            alert('Credenciais inválidas');
+        }
+    });
+</script>
+
+</body>
+</html>
